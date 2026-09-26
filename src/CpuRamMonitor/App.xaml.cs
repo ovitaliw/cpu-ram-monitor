@@ -29,7 +29,10 @@ public partial class App : Application
             // Not critical.
         }
 
-        MainWindow = new MainWindow(SettingsStore.Load(), new ExclusionList(AppPaths.Exclusions));
+        var settings = SettingsStore.Load();
+        StartupRegistration.Apply(settings.StartWithWindows);
+
+        MainWindow = new MainWindow(settings, new ExclusionList(AppPaths.Exclusions));
         MainWindow.Show();
     }
 

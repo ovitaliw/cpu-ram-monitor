@@ -54,6 +54,9 @@ public partial class MainWindow : Window
             _settings.Opacity = e.NewValue;
             ScheduleSave();
         };
+        StartupCheck.IsChecked = settings.StartWithWindows;
+        StartupCheck.Checked += (_, _) => SetStartWithWindows(true);
+        StartupCheck.Unchecked += (_, _) => SetStartWithWindows(false);
         ShowView(settings.Mode == WidgetMode.Expanded);
 
         _exclusions.Changed += () => Dispatcher.BeginInvoke(() =>
@@ -213,6 +216,14 @@ public partial class MainWindow : Window
     {
         _menuOpen = false;
         RenderLists();
+    }
+
+    private void SetStartWithWindows(bool enabled)
+    {
+        _settings.StartWithWindows = enabled;
+        StartupRegistration.Apply(enabled);
+        SaveNow();
+        ShowStatus(enabled ? "Vai iniciar com o Windows" : "Não vai mais iniciar com o Windows");
     }
 
     private void EditExclusions_Click(object sender, RoutedEventArgs e)

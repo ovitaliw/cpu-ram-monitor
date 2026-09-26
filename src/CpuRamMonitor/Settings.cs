@@ -11,6 +11,7 @@ public sealed class AppSettings
 {
     public WidgetMode Mode { get; set; } = WidgetMode.Compact;
     public double Opacity { get; set; } = 0.85;
+    public bool StartWithWindows { get; set; } = true;
     public double? Left { get; set; }
     public double? Top { get; set; }
 }

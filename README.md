@@ -34,7 +34,9 @@ dotnet publish src/CpuRamMonitor -c Release -r win-x64 --self-contained false -p
 
 ## Iniciar com o Windows
 
-`Win+R` → `shell:startup` → crie um atalho para `publish\CpuRamMonitor.exe`.
+Ligado por padrão: checkbox **Iniciar com o Windows** no modo expandido (ou `"startWithWindows": false` no `settings.json`).
+Usa a entrada `CpuRamMonitor` em `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` (não precisa de admin; aparece em Gerenciador de Tarefas → Aplicativos de inicialização).
+O caminho é regravado a cada execução, então vale o **último exe aberto**. Rode o `publish\CpuRamMonitor.exe` uma vez depois de testar com `dotnet run`.
 
 ## Observações
 
